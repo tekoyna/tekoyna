@@ -233,7 +233,8 @@ void CUser::SendMyInfo()
 //	}
 }
 
-int CUser::day_diff(int day1,int mon1,int year1,int hour1,int minute1,int day2,int mon2,int year2,int hour2,int minute2)
+
+int CUser::day_diff(int day1,int mon1,int year1,int day2,int mon2,int year2)
 {
 //~ 0sk1 - 04.01.2012
 	
@@ -256,33 +257,8 @@ for(i=ref;i<year2;i++)
 					dd2+=1;
 				}
 				dd2=func1(mon2)+dd2+day2+1+((year2-ref)*365);
-int sec1 = 0,result = 0,sec2 = 0;				
-sec1 = 	abs(dd2-dd1) * 24 * 60 * 60;
-
-
-	int Minutes = 0, Hours = 0;
-	Hours=hour2; //21
-	if(minute2 == 0)
-	Minutes = 60;
-	else
-	Minutes = minute2;
-
-
-	Minutes -= minute1;
-	Hours -= hour1;
-	Hours = Hours * 60;//convert to minute
-	Hours += Minutes; //convert to minute
-	
-	if(minute2 == 0)
-	Hours = Hours - 120;
-	
-	sec2 = Hours*60;
-
-
-result = sec1 + sec2;
-return result;
+				return abs(dd2-dd1) * 24 * 60 * 60;
 }
-
 
 int CUser::func1(int x)
 {  int y=0;
