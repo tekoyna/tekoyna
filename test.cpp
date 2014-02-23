@@ -232,3 +232,75 @@ void CUser::SendMyInfo()
 //		m_pMain->m_KnightsManager.ModifyKnightsUser( m_pUserData->m_bKnights, m_pUserData->m_id, m_pUserData->m_bFame, m_pUserData->m_bLevel, m_pUserData->m_sClass, 1);
 //	}
 }
+
+int CUser::day_diff(int day1,int mon1,int year1,int hour1,int minute1,int day2,int mon2,int year2,int hour2,int minute2)
+{
+//~ 0sk1 - 04.01.2012
+	
+int ref = 0,dd1 = 0 ,dd2 = 0 ,i= 0;
+ref = year1;
+if(year2<year1)
+ref = year2;
+dd1=0;
+dd1=func1(mon1);
+for(i=ref;i<year1;i++)
+{
+if(i%4==0)
+dd1+=1;
+}
+dd1=dd1+day1+(year1-ref)*365;
+dd2=0;
+for(i=ref;i<year2;i++)
+{
+					if(i%4==0)
+					dd2+=1;
+				}
+				dd2=func1(mon2)+dd2+day2+1+((year2-ref)*365);
+int sec1 = 0,result = 0,sec2 = 0;				
+sec1 = 	abs(dd2-dd1) * 24 * 60 * 60;
+
+
+	int Minutes = 0, Hours = 0;
+	Hours=hour2; //21
+	if(minute2 == 0)
+	Minutes = 60;
+	else
+	Minutes = minute2;
+
+
+	Minutes -= minute1;
+	Hours -= hour1;
+	Hours = Hours * 60;//convert to minute
+	Hours += Minutes; //convert to minute
+	
+	if(minute2 == 0)
+	Hours = Hours - 120;
+	
+	sec2 = Hours*60;
+
+
+result = sec1 + sec2;
+return result;
+}
+
+
+int CUser::func1(int x)
+{  int y=0;
+switch(x)
+{
+case 1: y=0; break;
+case 2: y=31; break;
+case 3: y=59; break;
+case 4: y=90; break;
+case 5: y=120;break;
+case 6: y=151; break;
+case 7: y=181; break;
+case 8: y=212; break;
+case 9: y=243; break;
+case 10:y=273; break;
+case 11:y=304; break;
+case 12:y=334; break;
+default: return 0;
+}
+return(y);
+}
